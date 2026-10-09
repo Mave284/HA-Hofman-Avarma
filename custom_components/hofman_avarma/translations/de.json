@@ -1,0 +1,72 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "AVARMA über Modbus verbinden",
+        "description": "RS485-Gateway an Comm 3 der Wärmepumpe (9600 8N1). Modbus TCP: Gateway im Modbus-TCP-Gateway-Modus. RTU over TCP: Gateway im transparenten Modus.",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "slave": "Slave-ID",
+          "framer": "Protokoll"
+        },
+        "data_description": {
+          "host": "IP-Adresse oder Hostname des Gateways",
+          "slave": "Modbus-Adresse der Wärmepumpe, ab Werk 1"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Gateway nicht erreichbar oder keine Antwort der Wärmepumpe",
+      "invalid_response": "Die Wärmepumpe hat die Anfrage abgelehnt. Slave-ID und Protokoll prüfen.",
+      "unknown": "Unerwarteter Fehler"
+    },
+    "abort": {
+      "already_configured": "Diese Wärmepumpe ist bereits eingerichtet"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Optionen",
+        "data": {
+          "scan_interval": "Abfrageintervall"
+        },
+        "data_description": {
+          "scan_interval": "Installateurparameter werden unabhängig davon alle 10 Minuten gelesen."
+        }
+      }
+    }
+  },
+  "selector": {
+    "framer": {
+      "options": {
+        "tcp": "Modbus TCP",
+        "rtuovertcp": "Modbus RTU over TCP"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "operating_mode": {
+        "name": "Betriebsmodus",
+        "state": {
+          "off": "Aus",
+          "dhw": "Warmwasser",
+          "heating": "Heizen",
+          "heating_dhw": "Heizen + Warmwasser"
+        }
+      }
+    },
+    "switch": {
+      "power": {
+        "name": "Ein/Aus (P00)"
+      }
+    },
+    "button": {
+      "fault_reset": {
+        "name": "Fehler quittieren"
+      }
+    }
+  }
+}

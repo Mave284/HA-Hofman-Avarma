@@ -1,0 +1,72 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect AVARMA via Modbus",
+        "description": "RS485 gateway on Comm 3 of the heat pump (9600 8N1). Modbus TCP: gateway in Modbus TCP gateway mode. RTU over TCP: gateway in transparent mode.",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "slave": "Slave ID",
+          "framer": "Protocol"
+        },
+        "data_description": {
+          "host": "IP address or hostname of the gateway",
+          "slave": "Modbus address of the heat pump, factory default 1"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Gateway not reachable or no answer from the heat pump",
+      "invalid_response": "The heat pump rejected the request. Check slave ID and protocol.",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "already_configured": "This heat pump is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "scan_interval": "Polling interval"
+        },
+        "data_description": {
+          "scan_interval": "Installer parameters are read every 10 minutes regardless."
+        }
+      }
+    }
+  },
+  "selector": {
+    "framer": {
+      "options": {
+        "tcp": "Modbus TCP",
+        "rtuovertcp": "Modbus RTU over TCP"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "operating_mode": {
+        "name": "Operating mode",
+        "state": {
+          "off": "Off",
+          "dhw": "Hot water",
+          "heating": "Heating",
+          "heating_dhw": "Heating + hot water"
+        }
+      }
+    },
+    "switch": {
+      "power": {
+        "name": "Power (P00)"
+      }
+    },
+    "button": {
+      "fault_reset": {
+        "name": "Reset faults"
+      }
+    }
+  }
+}
