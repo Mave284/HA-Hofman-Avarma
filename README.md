@@ -4,6 +4,9 @@ Home-Assistant-Integration für Hofman-Energy-**AVARMA**-Wärmepumpen (Monoblock
 
 *English summary below.*
 
+> [!IMPORTANT]
+> **Beta:** Die Integration ist bisher nur gegen einen Modbus-Simulator getestet, noch nicht an einer echten AVARMA. Rückmeldungen mit Modell (kW, 230 V/400 V) und Gateway-Typ sind ausdrücklich erwünscht, ob es funktioniert oder nicht.
+
 > [!WARNING]
 > Inoffizielles Community-Projekt, nicht von Hofman Energy. Die Registerbelegung stammt aus Community-Quellen und ist nicht vom Hersteller bestätigt. Parameter falsch zu setzen kann die Wärmepumpe in einen Störzustand bringen oder ihre Effizienz verschlechtern. Nutzung auf eigenes Risiko. Notiere dir **vor** dem ersten Schreibzugriff alle Werkswerte.
 
@@ -55,5 +58,7 @@ Bitte ein Issue mit Modell (kW, 230 V/400 V), Gateway-Typ und dem Diagnose-Downl
 ---
 
 ## English summary
+
+**Beta:** so far only tested against a Modbus simulator, not yet on a real AVARMA. Feedback (model, gateway type) is very welcome, whether it works or not.
 
 Unofficial Home Assistant integration for Hofman Energy AVARMA heat pumps via an RS485-to-Ethernet gateway (Modbus TCP or RTU over TCP). Connect the gateway to **Comm 3** (9600 8N1, slave 1). Provides sensors, status bits, on/off, fault reset and parameters. Everyday parameters are enabled; all other installer parameters are disabled by default; factory reset (P87) and RS485 address (P108) are never exposed. Register map based on the community work linked above. Use at your own risk.
