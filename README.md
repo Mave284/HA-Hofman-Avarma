@@ -51,6 +51,10 @@ Home-Assistant-Integration für Hofman-Energy-**AVARMA**-Wärmepumpen (Monoblock
 - Registerliste und Faktoren: [auenkind/esphome – hofman_energy_avarma](https://github.com/auenkind/esphome/tree/dev/esphome/components/hofman_energy_avarma)
 - [Akkudoktor-Forum: AVARMA WP – Monoblock R290](https://akkudoktor.net/t/avarma-wp-monoblock-r290/16194) und [Wiki: Avarma WP](https://akkudoktor.net/t/wiki-avarma-wp/34257)
 
+## Entstehung
+
+Der Code wurde mit Unterstützung von Claude (Anthropic) erstellt. Getestet und gepflegt wird er von mir.
+
 ## Fehler melden
 
 Bitte ein Issue mit Modell (kW, 230 V/400 V), Gateway-Typ und dem Diagnose-Download (Gerät → ⋮ → Diagnose herunterladen) anlegen.
@@ -61,4 +65,4 @@ Bitte ein Issue mit Modell (kW, 230 V/400 V), Gateway-Typ und dem Diagnose-Downl
 
 **Beta:** so far only tested against a Modbus simulator, not yet on a real AVARMA. Feedback (model, gateway type) is very welcome, whether it works or not.
 
-Unofficial Home Assistant integration for Hofman Energy AVARMA heat pumps via an RS485-to-Ethernet gateway (Modbus TCP or RTU over TCP). Connect the gateway to **Comm 3** (9600 8N1, slave 1). Provides sensors, status bits, on/off, fault reset and parameters. Everyday parameters are enabled; all other installer parameters are disabled by default; factory reset (P87) and RS485 address (P108) are never exposed. Register map based on the community work linked above. Use at your own risk.
+Unofficial Home Assistant integration for Hofman Energy AVARMA heat pumps via an RS485-to-Ethernet gateway (Modbus TCP or RTU over TCP). Connect the gateway to **Comm 3** (9600 8N1, slave 1). Provides sensors, status bits, on/off, fault reset and parameters. Everyday parameters are enabled; all other installer parameters are disabled by default; factory reset (P87) and RS485 address (P108) are never exposed. Register map based on the community work linked above. Code written with the help of Claude (Anthropic), tested and maintained by me. Use at your own risk.
