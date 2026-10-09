@@ -1,7 +1,7 @@
 {
   "domain": "hofman_avarma",
   "name": "Hofman Energy AVARMA",
-  "codeowners": ["@GITHUB_USER"],
+  "codeowners": ["@Mave284"],
   "config_flow": true,
   "documentation": "https://github.com/Mave284/HA-Hofman-Avarma",
   "integration_type": "device",
