@@ -32,7 +32,7 @@ Home-Assistant-Integration für Hofman-Energy-**AVARMA**-Wärmepumpen (Monoblock
 
 ## Installation
 
-1. HACS → Integrationen → ⋮ → *Benutzerdefinierte Repositories* → `https://github.com/GITHUB_USER/REPO_NAME`, Kategorie *Integration*
+1. HACS → Integrationen → ⋮ → *Benutzerdefinierte Repositories* → `https://github.com/Mave284/HA-Hofman-Avarma`, Kategorie *Integration*
 2. „Hofman Energy AVARMA“ installieren, Home Assistant neu starten
 3. Einstellungen → Geräte & Dienste → Integration hinzufügen → „Hofman Energy AVARMA“
 4. IP des Gateways, Port (meist 502), Slave-ID (ab Werk 1) und Protokoll eintragen
