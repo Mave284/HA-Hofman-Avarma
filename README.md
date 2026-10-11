@@ -35,10 +35,37 @@ Home-Assistant-Integration für Hofman-Energy-**AVARMA**-Wärmepumpen (Monoblock
 
 ## Installation
 
-1. HACS → Integrationen → ⋮ → *Benutzerdefinierte Repositories* → `https://github.com/Mave284/HA-Hofman-Avarma`, Kategorie *Integration*
-2. „Hofman Energy AVARMA“ installieren, Home Assistant neu starten
-3. Einstellungen → Geräte & Dienste → Integration hinzufügen → „Hofman Energy AVARMA“
-4. IP des Gateways, Port (meist 502), Slave-ID (ab Werk 1) und Protokoll eintragen
+Voraussetzungen: Home Assistant ab 2025.10 und [HACS](https://hacs.xyz/docs/use/).
+
+### Über HACS (empfohlen)
+
+[![In HACS öffnen](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Mave284&repository=HA-Hofman-Avarma&category=integration)
+
+1. Auf den Button klicken, die eigene Home-Assistant-Instanz bestätigen und in HACS **Herunterladen** wählen.
+   Ohne Button: HACS → ⋮ → *Benutzerdefinierte Repositories* → `https://github.com/Mave284/HA-Hofman-Avarma`, Typ *Integration* → hinzufügen, dann „Hofman Energy AVARMA“ suchen und herunterladen.
+2. Home Assistant neu starten.
+
+### Manuell
+
+1. Die ZIP des [aktuellen Releases](https://github.com/Mave284/HA-Hofman-Avarma/releases/latest) herunterladen.
+2. Den Ordner `custom_components/hofman_avarma` nach `<config>/custom_components/hofman_avarma` kopieren (z. B. per Samba- oder File-Editor-Add-on).
+3. Home Assistant neu starten.
+
+Updates kommen bei der manuellen Installation nicht automatisch, dafür HACS nutzen.
+
+## Einrichtung
+
+[![Integration hinzufügen](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=hofman_avarma)
+
+1. Auf den Button klicken oder: Einstellungen → Geräte & Dienste → **Integration hinzufügen** → „Hofman Energy AVARMA“.
+2. Eintragen:
+   - **Host:** IP-Adresse des Gateways (am besten fest per DHCP-Reservierung)
+   - **Port:** meist `502` (Werkseinstellung des Gateways prüfen)
+   - **Slave-ID:** ab Werk `1` (Parameter P108 an der Wärmepumpe)
+   - **Protokoll:** *Modbus TCP* oder *Modbus RTU over TCP*, passend zum Gateway-Modus (siehe [Hardware](#hardware))
+3. Die Integration prüft die Verbindung beim Speichern. Schlägt sie fehl, zuerst Protokoll, Verkabelung A/B und die seriellen Einstellungen am Gateway kontrollieren.
+
+Das Abfrageintervall lässt sich später unter Gerät → **Konfigurieren** ändern.
 
 ## Hinweise
 
@@ -65,4 +92,4 @@ Bitte ein Issue mit Modell (kW, 230 V/400 V), Gateway-Typ und dem Diagnose-Downl
 
 **Beta:** so far only tested against a Modbus simulator, not yet on a real AVARMA. Feedback (model, gateway type) is very welcome, whether it works or not.
 
-Unofficial Home Assistant integration for Hofman Energy AVARMA heat pumps via an RS485-to-Ethernet gateway (Modbus TCP or RTU over TCP). Connect the gateway to **Comm 3** (9600 8N1, slave 1). Provides sensors, status bits, on/off, fault reset and parameters. Everyday parameters are enabled; all other installer parameters are disabled by default; factory reset (P87) and RS485 address (P108) are never exposed. Register map based on the community work linked above. Code written with the help of Claude (Anthropic), tested and maintained by me. Use at your own risk.
+Unofficial Home Assistant integration for Hofman Energy AVARMA heat pumps via an RS485-to-Ethernet gateway (Modbus TCP or RTU over TCP). Connect the gateway to **Comm 3** (9600 8N1, slave 1). Install via the HACS button above (or add `https://github.com/Mave284/HA-Hofman-Avarma` as a custom repository of type *Integration*), restart Home Assistant, then add the integration with the *Add integration* button. Provides sensors, status bits, on/off, fault reset and parameters. Everyday parameters are enabled; all other installer parameters are disabled by default; factory reset (P87) and RS485 address (P108) are never exposed. Register map based on the community work linked above. Code written with the help of Claude (Anthropic), tested and maintained by me. Use at your own risk.
