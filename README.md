@@ -5,7 +5,7 @@ Home-Assistant-Integration für Hofman-Energy-**AVARMA**-Wärmepumpen (Monoblock
 *English summary below.*
 
 > [!IMPORTANT]
-> **Beta:** Die Integration ist bisher nur gegen einen Modbus-Simulator getestet, noch nicht an einer echten AVARMA. Rückmeldungen mit Modell (kW, 230 V/400 V) und Gateway-Typ sind ausdrücklich erwünscht, ob es funktioniert oder nicht.
+> **Beta:** Die Integration ist bisher nur gegen einen Modbus-Simulator getestet, noch nicht an einer echten AVARMA. Rückmeldungen mit Modell (kW, 230 V/400 V) und Gateway-Typ sind ausdrücklich erwünscht, ob es funktioniert oder nicht. Meine Avarma kommt Anfang November, dann werde ich selbst ausführlich testen.
 
 > [!WARNING]
 > Inoffizielles Community-Projekt, nicht von Hofman Energy. Die Registerbelegung stammt aus Community-Quellen und ist nicht vom Hersteller bestätigt. Parameter falsch zu setzen kann die Wärmepumpe in einen Störzustand bringen oder ihre Effizienz verschlechtern. Nutzung auf eigenes Risiko. Notiere dir **vor** dem ersten Schreibzugriff alle Werkswerte.
