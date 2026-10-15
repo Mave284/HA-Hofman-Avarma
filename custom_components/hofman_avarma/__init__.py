@@ -18,6 +18,7 @@ from .coordinator import AvarmaConfigEntry, AvarmaCoordinator
 PLATFORMS: list[Platform] = [
     Platform.BINARY_SENSOR,
     Platform.BUTTON,
+    Platform.EVENT,
     Platform.NUMBER,
     Platform.SENSOR,
     Platform.SWITCH,

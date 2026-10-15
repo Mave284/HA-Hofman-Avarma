@@ -56,6 +56,9 @@
           "heating": "Heating",
           "heating_dhw": "Heating + hot water"
         }
+      },
+      "active_faults": {
+        "name": "Active faults"
       }
     },
     "switch": {
@@ -66,6 +69,73 @@
     "button": {
       "fault_reset": {
         "name": "Reset faults"
+      }
+    },
+    "event": {
+      "fault": {
+        "name": "Fault",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "e01": "E01 Ambient temperature sensor fault",
+              "e02": "E02 Coil temperature sensor fault",
+              "e03": "E03 Suction temperature sensor fault",
+              "e04": "E04 EVI inlet temperature sensor fault",
+              "e05": "E05 EVI outlet temperature sensor fault",
+              "e06": "E06 Discharge temperature sensor fault",
+              "e07": "E07 Tank temperature sensor fault",
+              "e08": "E08 Water outlet temperature sensor fault",
+              "e09": "E09 Water inlet temperature sensor fault",
+              "e10": "E10 Liquid refrigerant temperature sensor fault",
+              "e11": "E11 Discharge temperature protection",
+              "e12": "E12 Antifreeze protection",
+              "e13": "E13 Flow switch fault",
+              "e14": "E14 Water flow protection",
+              "e15": "E15 High pressure protection",
+              "e16": "E16 Low pressure protection",
+              "e17": "E17 Discharge temperature too high",
+              "e18": "E18 EEPROM parameter error",
+              "e99": "E99 Driver board communication fault",
+              "e20": "E20 Inverter module protection",
+              "e56": "E56 DC bus overvoltage",
+              "e57": "E57 DC bus undervoltage",
+              "e58": "E58 Current sensor fault",
+              "e60": "E60 Overcurrent protection",
+              "e61": "E61 Motor phase loss",
+              "e62": "E62 Driver module fault",
+              "e63": "E63 IPM overtemperature",
+              "e64": "E64 Compressor stall",
+              "e65": "E65 Compressor overspeed",
+              "e66": "E66 Compressor underspeed",
+              "e67": "E67 Compressor start failure",
+              "e68": "E68 Compressor overload",
+              "e36": "E36",
+              "e59": "E59",
+              "e40": "E40",
+              "e44": "E44",
+              "e45": "E45",
+              "e46": "E46",
+              "e47": "E47",
+              "e48": "E48",
+              "e50": "E50 Condenser overheating protection",
+              "e100": "E100 Refrigerant concentration too high",
+              "e101": "E101",
+              "e102": "E102",
+              "e103": "E103",
+              "e104": "E104",
+              "e105": "E105",
+              "e106": "E106",
+              "e107": "E107",
+              "e108": "E108",
+              "e109": "E109",
+              "e110": "E110",
+              "e111": "E111",
+              "e112": "E112",
+              "e113": "E113",
+              "unknown": "Unknown fault bit"
+            }
+          }
+        }
       }
     }
   }

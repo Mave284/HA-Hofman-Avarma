@@ -17,6 +17,7 @@ Home-Assistant-Integration für Hofman-Energy-**AVARMA**-Wärmepumpen (Monoblock
 - 30 Messwerte (Temperaturen, Drücke, Verdichter, Pumpe, Spannungen), Betriebsmodus
 - 31 Statusbits (Abtauen, Alarm, Pumpen, E-Heizstäbe, Eingänge K1–K8, Frequenzbegrenzungen)
 - Ein/Aus (P00) und Fehler quittieren
+- Fehlercodes: Sensor **Aktive Fehler** (z. B. `E06, E58` oder `OK`) und Event **Störung**, das bei jedem neu auftretenden Fehler feuert (für Benachrichtigungen per Automation)
 - Parameter als Zahlen-Entitäten:
   - **aktiv:** P01 Betriebsart, P02/P08 maximale Heiztemperatur, P04 Warmwasser-Soll, P06/P07 Hysterese, P09 Heizkurven-Offset
   - **deaktiviert (bei Bedarf in HA einschalten):** alle übrigen Parameter aus Block 0x1000/0x2000
@@ -72,6 +73,8 @@ Das Abfrageintervall lässt sich später unter Gerät → **Konfigurieren** änd
 - Messwerte werden alle 15 s gelesen (in den Optionen einstellbar), Installateurparameter alle 10 Minuten und direkt nach einem Schreibzugriff.
 - Register 4611/4612 (Pumpendrehzahl, Betriebsmodus) stammen aus dem Akkudoktor-Forum. Liefert die Wärmepumpe sie nicht, bleiben die Entitäten „nicht verfügbar“, der Rest läuft weiter.
 - Der Durchflusssensor (C10) liefert bei manchen Geräten unplausible Werte.
+- Fehlercodes kommen aus den Registern 4390–4393 (0x1126–0x1129). Die Zuordnung Bit → Code stammt aus Community-Quellen und ist nicht von Hofman bestätigt; bei E15 widersprechen sich die Quellen (Hochdruck vs. Durchfluss). Im Zweifel gilt der Code am Display. Unbekannte Bits erscheinen als `0x1128.0` bzw. Event-Typ „Unbekanntes Fehlerbit“.
+- Das Event feuert nur für Fehler, die *neu* auftreten. Fehler, die beim Start von Home Assistant schon anstehen, zeigt nur der Sensor.
 
 ## Quellen
 
@@ -92,4 +95,4 @@ Bitte ein Issue mit Modell (kW, 230 V/400 V), Gateway-Typ und dem Diagnose-Downl
 
 **Beta:** so far only tested against a Modbus simulator, not yet on a real AVARMA. Feedback (model, gateway type) is very welcome, whether it works or not.
 
-Unofficial Home Assistant integration for Hofman Energy AVARMA heat pumps via an RS485-to-Ethernet gateway (Modbus TCP or RTU over TCP). Connect the gateway to **Comm 3** (9600 8N1, slave 1). Install via the HACS button above (or add `https://github.com/Mave284/HA-Hofman-Avarma` as a custom repository of type *Integration*), restart Home Assistant, then add the integration with the *Add integration* button. Provides sensors, status bits, on/off, fault reset and parameters. Everyday parameters are enabled; all other installer parameters are disabled by default; factory reset (P87) and RS485 address (P108) are never exposed. Register map based on the community work linked above. Code written with the help of Claude (Anthropic), tested and maintained by me. Use at your own risk.
+Unofficial Home Assistant integration for Hofman Energy AVARMA heat pumps via an RS485-to-Ethernet gateway (Modbus TCP or RTU over TCP). Connect the gateway to **Comm 3** (9600 8N1, slave 1). Install via the HACS button above (or add `https://github.com/Mave284/HA-Hofman-Avarma` as a custom repository of type *Integration*), restart Home Assistant, then add the integration with the *Add integration* button. Provides sensors, status bits, on/off, fault reset, fault codes ("Active faults" sensor plus a "Fault" event entity that fires on each new fault) and parameters. Everyday parameters are enabled; all other installer parameters are disabled by default; factory reset (P87) and RS485 address (P108) are never exposed. Register map based on the community work linked above. Code written with the help of Claude (Anthropic), tested and maintained by me. Use at your own risk.

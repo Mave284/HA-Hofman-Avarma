@@ -56,6 +56,9 @@
           "heating": "Heizen",
           "heating_dhw": "Heizen + Warmwasser"
         }
+      },
+      "active_faults": {
+        "name": "Aktive Fehler"
       }
     },
     "switch": {
@@ -66,6 +69,73 @@
     "button": {
       "fault_reset": {
         "name": "Fehler quittieren"
+      }
+    },
+    "event": {
+      "fault": {
+        "name": "Störung",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "e01": "E01 Fühler Außentemperatur defekt",
+              "e02": "E02 Fühler Verdampfer (Coil) defekt",
+              "e03": "E03 Fühler Sauggas defekt",
+              "e04": "E04 Fühler EVI-Eintritt defekt",
+              "e05": "E05 Fühler EVI-Austritt defekt",
+              "e06": "E06 Fühler Heißgas defekt",
+              "e07": "E07 Fühler Speicher defekt",
+              "e08": "E08 Fühler Wasseraustritt defekt",
+              "e09": "E09 Fühler Wassereintritt defekt",
+              "e10": "E10 Fühler Kältemittel flüssig defekt",
+              "e11": "E11 Heißgastemperatur-Schutz",
+              "e12": "E12 Frostschutz",
+              "e13": "E13 Strömungsschalter defekt",
+              "e14": "E14 Durchflussschutz",
+              "e15": "E15 Hochdruckschutz",
+              "e16": "E16 Niederdruckschutz",
+              "e17": "E17 Heißgastemperatur zu hoch",
+              "e18": "E18 EEPROM-Parameterfehler",
+              "e99": "E99 Kommunikation Treiberplatine gestört",
+              "e20": "E20 Inverter-Modul-Schutz",
+              "e56": "E56 DC-Zwischenkreis Überspannung",
+              "e57": "E57 DC-Zwischenkreis Unterspannung",
+              "e58": "E58 Stromsensor defekt",
+              "e60": "E60 Überstromschutz",
+              "e61": "E61 Phasenausfall Verdichtermotor",
+              "e62": "E62 Treibermodul defekt",
+              "e63": "E63 IPM-Übertemperatur",
+              "e64": "E64 Verdichter blockiert",
+              "e65": "E65 Verdichter Überdrehzahl",
+              "e66": "E66 Verdichter Unterdrehzahl",
+              "e67": "E67 Verdichter Startfehler",
+              "e68": "E68 Verdichter Überlast",
+              "e36": "E36",
+              "e59": "E59",
+              "e40": "E40",
+              "e44": "E44",
+              "e45": "E45",
+              "e46": "E46",
+              "e47": "E47",
+              "e48": "E48",
+              "e50": "E50 Verflüssiger-Überhitzungsschutz",
+              "e100": "E100 Kältemittelkonzentration zu hoch",
+              "e101": "E101",
+              "e102": "E102",
+              "e103": "E103",
+              "e104": "E104",
+              "e105": "E105",
+              "e106": "E106",
+              "e107": "E107",
+              "e108": "E108",
+              "e109": "E109",
+              "e110": "E110",
+              "e111": "E111",
+              "e112": "E112",
+              "e113": "E113",
+              "unknown": "Unbekanntes Fehlerbit"
+            }
+          }
+        }
       }
     }
   }

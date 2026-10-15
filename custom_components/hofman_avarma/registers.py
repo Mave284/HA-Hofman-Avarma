@@ -288,6 +288,144 @@ BITS: tuple[BitReg, ...] = (
 )
 
 # --------------------------------------------------------------------------
+# Fault codes
+# --------------------------------------------------------------------------
+# Four 16 bit fault bitfields "Fault State 0..3" at 4390..4393 (0x1126..0x1129).
+# They are part of BLOCK_STATUS, so decoding them costs no extra Modbus request.
+#
+# NOT confirmed by Hofman. The address and "Fault State 0 = E01..E16" are
+# documented in the Akkudoktor wiki; the bit -> code assignment of states 1..3
+# follows a community register sheet and is not sequential (e.g. E99 sits
+# between E18 and E20). The Akkudoktor wiki calls E15 "water flow", the sheet
+# calls it "high pressure". Compare with the display before trusting a text.
+FAULT_ADDRESSES: tuple[int, ...] = (0x1126, 0x1127, 0x1128, 0x1129)
+
+
+@dataclass(frozen=True, kw_only=True)
+class FaultBit:
+    """One bit of a fault register."""
+
+    code: str
+    description: str | None = None
+
+    @property
+    def key(self) -> str:
+        """Event type / translation key, e.g. "e06"."""
+        return self.code.lower()
+
+
+def _f(code: str, description: str | None = None) -> FaultBit:
+    return FaultBit(code=code, description=description)
+
+
+# FAULT_MAP[register index][bit]
+FAULT_MAP: tuple[dict[int, FaultBit], ...] = (
+    {  # 0x1126 Fault State 0
+        0: _f("E01", "Ambient temperature sensor fault"),
+        1: _f("E02", "Coil temperature sensor fault"),
+        2: _f("E03", "Suction temperature sensor fault"),
+        3: _f("E04", "EVI inlet temperature sensor fault"),
+        4: _f("E05", "EVI outlet temperature sensor fault"),
+        5: _f("E06", "Discharge temperature sensor fault"),
+        6: _f("E07", "Tank temperature sensor fault"),
+        7: _f("E08", "Water outlet temperature sensor fault"),
+        8: _f("E09", "Water inlet temperature sensor fault"),
+        9: _f("E10", "Liquid refrigerant temperature sensor fault"),
+        10: _f("E11", "Discharge temperature protection"),
+        11: _f("E12", "Antifreeze protection"),
+        12: _f("E13", "Flow switch fault"),
+        13: _f("E14", "Water flow protection"),
+        14: _f("E15", "High pressure protection"),
+        15: _f("E16", "Low pressure protection"),
+    },
+    {  # 0x1127 Fault State 1
+        0: _f("E17", "Discharge temperature too high"),
+        1: _f("E18", "EEPROM parameter error"),
+        2: _f("E99", "Driver board communication fault"),
+        3: _f("E20", "Inverter module protection"),
+        4: _f("E56", "DC bus overvoltage"),
+        5: _f("E57", "DC bus undervoltage"),
+        6: _f("E58", "Current sensor fault"),
+        7: _f("E60", "Overcurrent protection"),
+        8: _f("E61", "Motor phase loss"),
+        9: _f("E62", "Driver module fault"),
+        10: _f("E63", "IPM overtemperature"),
+        11: _f("E64", "Compressor stall"),
+        12: _f("E65", "Compressor overspeed"),
+        13: _f("E66", "Compressor underspeed"),
+        14: _f("E67", "Compressor start failure"),
+        15: _f("E68", "Compressor overload"),
+    },
+    {  # 0x1128 Fault State 2, meaning of these codes unknown
+        3: _f("E36"),
+        6: _f("E59"),
+        7: _f("E40"),
+        11: _f("E44"),
+        12: _f("E45"),
+        13: _f("E46"),
+        14: _f("E47"),
+        15: _f("E48"),
+    },
+    {  # 0x1129 Fault State 3
+        1: _f("E50", "Condenser overheating protection"),
+        2: _f("E100", "Refrigerant concentration too high"),
+        **{bit: _f(f"E{98 + bit}") for bit in range(3, 16)},  # E101..E113
+    },
+)
+
+UNKNOWN_FAULT_KEY = "unknown"
+FAULT_EVENT_TYPES: tuple[str, ...] = (
+    *(fault.key for bits in FAULT_MAP for fault in bits.values()),
+    UNKNOWN_FAULT_KEY,
+)
+
+
+@dataclass(frozen=True, kw_only=True)
+class ActiveFault:
+    """A set fault bit."""
+
+    code: str
+    key: str
+    description: str | None
+    address: int
+    bit: int
+
+
+def decode_faults(data: dict[int, int] | None) -> list[ActiveFault] | None:
+    """Return all set fault bits, or None if a fault register is missing."""
+    if data is None or any(data.get(a) is None for a in FAULT_ADDRESSES):
+        return None
+    faults: list[ActiveFault] = []
+    for index, address in enumerate(FAULT_ADDRESSES):
+        raw = data[address]
+        for bit in range(16):
+            if not raw & (1 << bit):
+                continue
+            known = FAULT_MAP[index].get(bit)
+            if known:
+                faults.append(
+                    ActiveFault(
+                        code=known.code,
+                        key=known.key,
+                        description=known.description,
+                        address=address,
+                        bit=bit,
+                    )
+                )
+            else:
+                faults.append(
+                    ActiveFault(
+                        code=f"0x{address:04X}.{bit}",
+                        key=UNKNOWN_FAULT_KEY,
+                        description=None,
+                        address=address,
+                        bit=bit,
+                    )
+                )
+    return faults
+
+
+# --------------------------------------------------------------------------
 # Switch / button
 # --------------------------------------------------------------------------
 POWER_ADDRESS = 0x1000  # P00 on/off
