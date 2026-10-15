@@ -13,6 +13,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .coordinator import AvarmaConfigEntry, AvarmaCoordinator
 from .entity import AvarmaEntity
+from .faults import FAULT_ADDRESSES, decode_faults
 from .registers import MODE_ADDRESS, MODE_STATES, SENSORS, SensorReg, to_signed
 
 PARALLEL_UPDATES = 0
@@ -28,6 +29,7 @@ async def async_setup_entry(
     coordinator = entry.runtime_data
     entities: list[SensorEntity] = [AvarmaSensor(coordinator, reg) for reg in SENSORS]
     entities.append(AvarmaModeSensor(coordinator))
+    entities.append(AvarmaActiveFaultsSensor(coordinator))
     async_add_entities(entities)
 
 
@@ -81,3 +83,34 @@ class AvarmaModeSensor(AvarmaEntity, SensorEntity):
     @property
     def extra_state_attributes(self) -> dict[str, int | None]:
         return {"raw_value": self.raw}
+
+
+class AvarmaActiveFaultsSensor(AvarmaEntity, SensorEntity):
+    """Active fault codes, e.g. "E15, E20-16", or "OK"."""
+
+    _attr_translation_key = "active_faults"
+
+    def __init__(self, coordinator: AvarmaCoordinator) -> None:
+        super().__init__(coordinator, "active_faults", FAULT_ADDRESSES[0])
+
+    @property
+    def available(self) -> bool:
+        return super().available and decode_faults(self.coordinator.data) is not None
+
+    @property
+    def native_value(self) -> str | None:
+        faults = decode_faults(self.coordinator.data)
+        if faults is None:
+            return None
+        return ", ".join(f.code for f in faults) if faults else "OK"
+
+    @property
+    def extra_state_attributes(self) -> dict[str, object]:
+        faults = decode_faults(self.coordinator.data) or []
+        language = self.hass.config.language if self.hass else None
+        data = self.coordinator.data or {}
+        return {
+            "count": len(faults),
+            "faults": [f.as_dict(language) for f in faults],
+            "raw": {f"0x{a:04X}": data.get(a) for a in FAULT_ADDRESSES},
+        }

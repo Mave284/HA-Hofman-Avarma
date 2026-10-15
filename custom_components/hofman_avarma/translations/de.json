@@ -56,6 +56,9 @@
           "heating": "Heizen",
           "heating_dhw": "Heizen + Warmwasser"
         }
+      },
+      "active_faults": {
+        "name": "Aktive Fehler"
       }
     },
     "switch": {
@@ -66,6 +69,84 @@
     "button": {
       "fault_reset": {
         "name": "Fehler quittieren"
+      }
+    },
+    "event": {
+      "fault": {
+        "name": "Störung",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "e01": "E01 Sensorfehler Außenlufttemperatur",
+              "e02": "E02 Sensorfehler Verdampfertemperatur",
+              "e03": "E03 Sensorfehler Ansaugtemperatur",
+              "e04": "E04 Sensorfehler EVI-Einlasstemperatur",
+              "e05": "E05 Sensorfehler EVI-Auslasstemperatur",
+              "e06": "E06 Sensorfehler Verdichtungstemperatur",
+              "e07": "E07 Sensorfehler Trinkwasser-Temperatur",
+              "e08": "E08 Sensorfehler Austrittstemperatur",
+              "e09": "E09 Sensorfehler Eintrittstemperatur",
+              "e10": "E10 Sensorfehler Kältemitteltemperatur",
+              "e11": "E11 Sensorfehler Hochdruck",
+              "e12": "E12 Sensorfehler Niederdruck",
+              "e13": "E13 Hochdruckschutz",
+              "e14": "E14 Niederdruckschutz",
+              "e15": "E15 Störung Wasserdurchfluss",
+              "e16": "E16 Kommunikationsfehler",
+              "e17": "E17 Schutz gegen zu hohe Verdichtungstemperatur",
+              "e18": "E18 EEPROM-Parameterfehler",
+              "e99": "E99 Kommunikationsstörung Inverterplatine",
+              "e20": "E20 Schutz IPM",
+              "e21_e56": "E21/E56 Spannungsfehler",
+              "e22": "E22 Wassertemperaturdifferenz zu hoch",
+              "e23": "E23 Trinkwasser-Frostschutz 2x",
+              "e24": "E24 A/C-Frostschutz 2x",
+              "e56_e21": "E56/E21 Primärseitiger Stromschutz",
+              "e26": "E26 Temperatur-Sensorfehler T6",
+              "e27": "E27 Umgebungstemperatur überschreitet Obergrenze",
+              "e28": "E28 Wassereintrittstemperatur zu hoch (Kühlen)",
+              "e29": "E29 Sensorfehler Raumtemperatur",
+              "e58": "E58 Umgebungstemperatur unterschreitet untere Grenze",
+              "e32": "E32 Wasseraustrittstemperatur zu hoch (Heizen)",
+              "e36": "E36 Kommunikationsfehler DC-Lüfterplatine",
+              "e59": "E59 Wasserein-/-austrittsfühler vertauscht oder Vierwegeventil gestört",
+              "e40": "E40 Wasseraustrittstemperatur zu niedrig (Kühlen)",
+              "e44": "E44 1# DC-Motor Störung",
+              "e45": "E45 2# DC-Motor Störung",
+              "e50": "E50 Schutz gegen hohe Temperatur des Verdampfers",
+              "e51_e100": "E51/E100 Kältemittelkonzentration zu hoch",
+              "e101": "E101",
+              "e102": "E102",
+              "e103": "E103",
+              "e104": "E104",
+              "e105": "E105",
+              "e106": "E106",
+              "e107": "E107",
+              "e108": "E108",
+              "e20_1": "E20-1 IPM-Störung",
+              "e20_5": "E20-5 Verdichterantriebsstörung (außer IPM)",
+              "e20_320": "E20-320 Verdichterüberstrom",
+              "e20_288": "E20-288 IPM-Übertemperaturabschaltung",
+              "e20_384": "E20-384 Störung PFC (Leistungsfaktorkorrektur)",
+              "e20_32": "E20-32 DC-Bus-Überspannung",
+              "e20_16": "E20-16 DC-Bus-Unterspannung",
+              "e20_264": "E20-264 AC-Eingangsspannung Über- und Unterspannung",
+              "e20_260": "E20-260 AC-Eingangsstrom Überstromabschaltung",
+              "e20_257": "E20-257 Ungewöhnliche Kommunikation mit der Hauptplatine",
+              "e20_291": "E20-291 Beschleunigung durch Überstrom",
+              "e20_292": "E20-292 Verlangsamung durch Überstrom",
+              "e20_293": "E20-293 Überstrom bei konstanter Drehzahl",
+              "e20_294": "E20-294 Beschleunigung durch Überspannung",
+              "e20_295": "E20-295 Verlangsamung durch Überspannung",
+              "e20_296": "E20-296 Überspannung bei konstanter Drehzahl",
+              "e20_297": "E20-297 Ungleichschrittigkeit",
+              "e20_258": "E20-258 Phasenausfallstörung",
+              "e20_298": "E20-298 IPM-Modul Ausfall des Hardware-Schutzes",
+              "e20_299": "E20-299 Abnormale Stromerfassungsschaltung",
+              "unknown": "Unbekanntes Fehlerbit"
+            }
+          }
+        }
       }
     }
   }

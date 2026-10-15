@@ -56,6 +56,9 @@
           "heating": "Heating",
           "heating_dhw": "Heating + hot water"
         }
+      },
+      "active_faults": {
+        "name": "Active faults"
       }
     },
     "switch": {
@@ -66,6 +69,84 @@
     "button": {
       "fault_reset": {
         "name": "Reset faults"
+      }
+    },
+    "event": {
+      "fault": {
+        "name": "Fault",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "e01": "E01 Outdoor air temp sensor error",
+              "e02": "E02 Coil temp sensor error",
+              "e03": "E03 Suction temp sensor error",
+              "e04": "E04 EVI inlet temp sensor error",
+              "e05": "E05 EVI outlet temp sensor error",
+              "e06": "E06 Discharge temp sensor error",
+              "e07": "E07 DHW temp sensor error",
+              "e08": "E08 Outlet temp sensor error",
+              "e09": "E09 Inlet temp sensor error",
+              "e10": "E10 Liquid refrigerant temp sensor error",
+              "e11": "E11 High pressure sensor error",
+              "e12": "E12 Low pressure sensor error",
+              "e13": "E13 High pressure protection",
+              "e14": "E14 Low pressure protection",
+              "e15": "E15 Water flow error",
+              "e16": "E16 Communication error",
+              "e17": "E17 Discharge temp too high protection",
+              "e18": "E18 EEPROM parameter error",
+              "e99": "E99 Driver board communication failure",
+              "e20": "E20 IPM abnormal protection",
+              "e21_e56": "E21/E56 Voltage failure",
+              "e22": "E22 Water temp differential too big",
+              "e23": "E23 DHW anti-freeze twice",
+              "e24": "E24 A/C anti-freeze twice",
+              "e56_e21": "E56/E21 Primary side current protection",
+              "e26": "E26 T6 temp sensor error",
+              "e27": "E27 Ambient temperature exceeds upper limit",
+              "e28": "E28 Inlet water temp too high (cooling)",
+              "e29": "E29 Room temp sensor error",
+              "e58": "E58 T4 low ambient temperature protection",
+              "e32": "E32 Outlet water temp too high (heating)",
+              "e36": "E36 Fan motor driver communication failure",
+              "e59": "E59 Inlet and outlet water temp reverse connection or abnormal four-way valve",
+              "e40": "E40 Cooling outlet water temp low protection",
+              "e44": "E44 1# DC motor error",
+              "e45": "E45 2# DC motor error",
+              "e50": "E50 Condenser overheating protection",
+              "e51_e100": "E51/E100 High refrigerant concentration protection",
+              "e101": "E101",
+              "e102": "E102",
+              "e103": "E103",
+              "e104": "E104",
+              "e105": "E105",
+              "e106": "E106",
+              "e107": "E107",
+              "e108": "E108",
+              "e20_1": "E20-1 IPM failure",
+              "e20_5": "E20-5 Compressor drive failure (except IPM)",
+              "e20_320": "E20-320 Compressor overcurrent",
+              "e20_288": "E20-288 IPM overtemperature shutdown",
+              "e20_384": "E20-384 PFC failure",
+              "e20_32": "E20-32 DC bus overvoltage",
+              "e20_16": "E20-16 DC bus undervoltage",
+              "e20_264": "E20-264 AC input over- or undervoltage",
+              "e20_260": "E20-260 AC input overcurrent shutdown",
+              "e20_257": "E20-257 Abnormal communication with main control board",
+              "e20_291": "E20-291 Acceleration overcurrent",
+              "e20_292": "E20-292 Deceleration overcurrent",
+              "e20_293": "E20-293 Constant speed overcurrent",
+              "e20_294": "E20-294 Acceleration overvoltage",
+              "e20_295": "E20-295 Deceleration overvoltage",
+              "e20_296": "E20-296 Constant speed overvoltage",
+              "e20_297": "E20-297 Out of sync failure",
+              "e20_258": "E20-258 Phase loss fault",
+              "e20_298": "E20-298 IPM module hardware protection failure",
+              "e20_299": "E20-299 Abnormal current detection circuit",
+              "unknown": "Unknown fault"
+            }
+          }
+        }
       }
     }
   }
